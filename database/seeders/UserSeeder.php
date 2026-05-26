@@ -10,23 +10,22 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::insert([
+        User::firstOrCreate(
+            ['email' => 'admin@diplom.com'],
             [
-                'name'       => 'Адміністратор',
-                'email'      => 'admin@diplom.com',
-                'password'   => Hash::make('password'),
-                'role_id'    => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+                'name'     => 'Адміністратор',
+                'password' => Hash::make('password'),
+                'role_id'  => 1,
+            ]
+        );
+
+        User::firstOrCreate(
+            ['email' => 'manager@diplom.com'],
             [
-                'name'       => 'Менеджер',
-                'email'      => 'manager@diplom.com',
-                'password'   => Hash::make('password'),
-                'role_id'    => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+                'name'     => 'Менеджер',
+                'password' => Hash::make('password'),
+                'role_id'  => 2,
+            ]
+        );
     }
 }
