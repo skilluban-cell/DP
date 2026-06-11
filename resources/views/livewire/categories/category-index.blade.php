@@ -53,9 +53,9 @@
                         <td class="px-4 py-3">{{ $category->products_count }}</td>
                         <td class="px-4 py-3">
                             <div class="flex gap-2">
-                                <flux:button size="sm" wire:click="openEdit({{ $category->id }})">
-                                    Редагувати
-                                </flux:button>
+                                <flux:button size="sm" href="{{ route('categories.edit', $category) }}" wire:navigate>
+    Редагувати
+</flux:button>
                                 <form method="POST" action="/categories/{{ $category->id }}" onsubmit="return confirm('Видалити категорію?')">
     @csrf
     @method('DELETE')

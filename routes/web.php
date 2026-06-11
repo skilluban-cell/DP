@@ -63,4 +63,8 @@ Route::delete('/warehouses/{warehouse}', function (\App\Models\Warehouse $wareho
     $warehouse->delete();
     return redirect()->route('warehouses.index')->with('success', 'Склад видалено!');
 })->name('warehouses.destroy');
+
+Route::get('/categories/{category}/edit', function (\App\Models\Category $category) {
+    return view('categories.edit', compact('category'));
+})->name('categories.edit');
 });
