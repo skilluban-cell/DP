@@ -53,4 +53,14 @@ Route::delete('/products/{product}', function (\App\Models\Product $product) {
     $product->delete();
     return redirect()->route('products.index')->with('success', 'Товар видалено!');
 })->name('products.destroy');
+
+Route::delete('/categories/{category}', function (\App\Models\Category $category) {
+    $category->delete();
+    return redirect()->route('categories.index')->with('success', 'Категорію видалено!');
+})->name('categories.destroy');
+
+Route::delete('/warehouses/{warehouse}', function (\App\Models\Warehouse $warehouse) {
+    $warehouse->delete();
+    return redirect()->route('warehouses.index')->with('success', 'Склад видалено!');
+})->name('warehouses.destroy');
 });

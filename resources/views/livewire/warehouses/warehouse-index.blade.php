@@ -56,9 +56,13 @@
                                 <flux:button size="sm" wire:click="openEdit({{ $warehouse->id }})">
                                     Редагувати
                                 </flux:button>
-                                <flux:button size="sm" variant="danger" wire:click="delete({{ $warehouse->id }})" wire:confirm="Видалити склад?">
-                                    Видалити
-                                </flux:button>
+                                <form method="POST" action="/warehouses/{{ $warehouse->id }}" onsubmit="return confirm('Видалити склад?')">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700">
+        Видалити
+    </button>
+</form>
                             </div>
                         </td>
                     </tr>

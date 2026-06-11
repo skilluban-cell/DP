@@ -56,9 +56,13 @@
                                 <flux:button size="sm" wire:click="openEdit({{ $category->id }})">
                                     Редагувати
                                 </flux:button>
-                                <flux:button size="sm" variant="danger" wire:click="delete({{ $category->id }})" wire:confirm="Видалити категорію?">
-                                    Видалити
-                                </flux:button>
+                                <form method="POST" action="/categories/{{ $category->id }}" onsubmit="return confirm('Видалити категорію?')">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700">
+        Видалити
+    </button>
+</form>
                             </div>
                         </td>
                     </tr>
