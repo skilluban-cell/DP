@@ -2,21 +2,29 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
 use App\Models\Stock;
+use App\Models\Warehouse;
 use Illuminate\Database\Seeder;
 
 class StockSeeder extends Seeder
 {
     public function run(): void
     {
-        // Кожен товар на кожному складі
-        for ($productId = 1; $productId <= 10; $productId++) {
-            for ($warehouseId = 1; $warehouseId <= 2; $warehouseId++) {
-                Stock::create([
-                    'product_id'   => $productId,
-                    'warehouse_id' => $warehouseId,
-                    'quantity'     => rand(10, 100),
-                ]);
+        $products   = Product::all();
+        $warehouses = Warehouse::all();
+
+        foreach ($products as $product) {
+            foreach ($warehouses as $warehouse) {
+                Stock::firstOrCreate(
+                    [
+                        'product_id'   => $product->id,
+                        'warehouse_id' => $warehouse->id,
+                    ],
+                    [
+                        'quantity' => rand(10, 100),
+                    ]
+                );
             }
         }
     }
