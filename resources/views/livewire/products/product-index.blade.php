@@ -39,9 +39,9 @@
                                 <flux:button size="sm" href="{{ route('products.edit', $product) }}" wire:navigate>
                                     Редагувати
                                 </flux:button>
-                                <flux:button size="sm" variant="danger" wire:click="delete({{ $product->id }})" wire:confirm="Видалити товар?">
-                                    Видалити
-                                </flux:button>
+                                <flux:button size="sm" variant="danger" wire:click="delete({{ $product->id }})">
+    Видалити
+</flux:button>
                             </div>
                         </td>
                     </tr>
