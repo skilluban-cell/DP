@@ -39,9 +39,13 @@
                                 <flux:button size="sm" href="{{ route('products.edit', $product) }}" wire:navigate>
                                     Редагувати
                                 </flux:button>
-                                <flux:button size="sm" variant="danger" wire:click="delete({{ $product->id }})">
-    Видалити
-</flux:button>
+                                <form method="POST" action="/products/{{ $product->id }}" onsubmit="return confirm('Видалити товар?')">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700">
+        Видалити
+    </button>
+</form>
                             </div>
                         </td>
                     </tr>

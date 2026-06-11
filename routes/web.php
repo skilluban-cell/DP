@@ -48,4 +48,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', function () {
     return view('profile.edit');
 })->name('profile.edit');
+
+Route::delete('/products/{product}', function (\App\Models\Product $product) {
+    $product->delete();
+    return redirect()->route('products.index')->with('success', 'Товар видалено!');
+})->name('products.destroy');
 });
