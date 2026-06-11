@@ -53,9 +53,9 @@
                         <td class="px-4 py-3">{{ $warehouse->stock_count }}</td>
                         <td class="px-4 py-3">
                             <div class="flex gap-2">
-                                <flux:button size="sm" wire:click="openEdit({{ $warehouse->id }})">
-                                    Редагувати
-                                </flux:button>
+                                <flux:button size="sm" href="{{ route('warehouses.edit', $warehouse) }}" wire:navigate>
+    Редагувати
+</flux:button>
                                 <form method="POST" action="/warehouses/{{ $warehouse->id }}" onsubmit="return confirm('Видалити склад?')">
     @csrf
     @method('DELETE')

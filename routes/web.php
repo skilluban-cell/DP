@@ -67,4 +67,8 @@ Route::delete('/warehouses/{warehouse}', function (\App\Models\Warehouse $wareho
 Route::get('/categories/{category}/edit', function (\App\Models\Category $category) {
     return view('categories.edit', compact('category'));
 })->name('categories.edit');
+
+Route::get('/warehouses/{warehouse}/edit', function (\App\Models\Warehouse $warehouse) {
+    return view('warehouses.edit', compact('warehouse'));
+})->name('warehouses.edit');
 });
