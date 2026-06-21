@@ -30,15 +30,27 @@ Route::middleware(['auth'])->group(function () {
         return view('categories.index');
     })->name('categories.index');
 
+    Route::get('/categories/create', function () {
+        return view('categories.create');
+    })->name('categories.create');
+
     // Склади
     Route::get('/warehouses', function () {
         return view('warehouses.index');
     })->name('warehouses.index');
 
+    Route::get('/warehouses/create', function () {
+        return view('warehouses.create');
+    })->name('warehouses.create');
+
     // Рух товарів
     Route::get('/movements', function () {
         return view('movements.index');
     })->name('movements.index');
+
+    Route::get('/movements/create', function () {
+        return view('movements.create');
+    })->name('movements.create');
 
     // Звіти
     Route::get('/reports', function () {

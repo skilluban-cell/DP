@@ -1,35 +1,10 @@
 <div>
     <div class="flex items-center justify-between mb-6">
         <flux:heading size="xl">Склади</flux:heading>
-        <flux:button type="button" variant="primary" icon="plus" wire:click.prevent="openCreate">
+        <flux:button href="{{ route('warehouses.create') }}" variant="primary" icon="plus" wire:navigate>
             Додати склад
         </flux:button>
     </div>
-
-    @if($showForm)
-        <div class="bg-white dark:bg-zinc-900 rounded-lg shadow p-6 max-w-2xl mb-6">
-            <flux:heading size="lg" class="mb-4">
-                {{ $editingId ? 'Редагувати склад' : 'Новий склад' }}
-            </flux:heading>
-            <form wire:submit="save">
-                <div class="grid gap-4">
-                    <flux:field>
-                        <flux:label>Назва складу</flux:label>
-                        <flux:input wire:model="name" placeholder="Наприклад: Головний склад" />
-                        <flux:error name="name" />
-                    </flux:field>
-                    <flux:field>
-                        <flux:label>Адреса</flux:label>
-                        <flux:input wire:model="address" placeholder="Адреса (необов'язково)" />
-                    </flux:field>
-                </div>
-                <div class="flex gap-3 mt-4">
-                    <flux:button type="submit" variant="primary">Зберегти</flux:button>
-                    <flux:button variant="ghost" wire:click="$set('showForm', false)">Скасувати</flux:button>
-                </div>
-            </form>
-        </div>
-    @endif
 
     <div class="mb-4">
         <flux:input wire:model.live="search" placeholder="Пошук складу..." icon="magnifying-glass" />

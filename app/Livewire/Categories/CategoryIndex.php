@@ -9,47 +9,6 @@ use Illuminate\Support\Str;
 class CategoryIndex extends Component
 {
     public string $search = '';
-    public string $name = '';
-    public string $description = '';
-    public bool $showForm = false;
-    public ?int $editingId = null;
-
-    public function openCreate(): void
-    {
-        $this->name = '';
-        $this->description = '';
-        $this->editingId = null;
-        $this->showForm = true;
-    }
-
-    public function openEdit(Category $category): void
-    {
-        $this->editingId   = $category->id;
-        $this->name        = $category->name;
-        $this->description = $category->description ?? '';
-        $this->showForm    = true;
-    }
-
-    public function save(): void
-    {
-        $this->validate([
-            'name' => 'required|min:2',
-        ]);
-
-        Category::updateOrCreate(
-            ['id' => $this->editingId],
-            [
-                'name'        => $this->name,
-                'slug'        => Str::slug($this->name),
-                'description' => $this->description,
-            ]
-        );
-
-        $this->name = '';
-        $this->description = '';
-        $this->editingId = null;
-        $this->showForm = false;
-    }
 
     public function delete(int $id): void
     {

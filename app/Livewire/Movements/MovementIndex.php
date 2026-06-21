@@ -15,66 +15,6 @@ class MovementIndex extends Component
 
     public string $search = '';
     public string $filterType = '';
-    public bool $showForm = false;
-
-    public int|string $product_id = '';
-    public int|string $warehouse_id = '';
-    public string $type = 'in';
-    public string $quantity = '';
-    public string $note = '';
-
-    public function openCreate(): void
-    {
-        $this->product_id = '';
-        $this->warehouse_id = '';
-        $this->type = 'in';
-        $this->quantity = '';
-        $this->note = '';
-        $this->showForm = true;
-    }
-
-    public function save(): void
-    {
-        $this->validate([
-            'product_id'   => 'required|exists:products,id',
-            'warehouse_id' => 'required|exists:warehouses,id',
-            'type'         => 'required|in:in,out',
-            'quantity'     => 'required|numeric|min:0.01',
-            'note'         => 'nullable',
-        ]);
-
-        // Оновлюємо залишки
-        $stock = Stock::firstOrCreate(
-            ['product_id' => $this->product_id, 'warehouse_id' => $this->warehouse_id],
-            ['quantity' => 0]
-        );
-
-        if ($this->type === 'in') {
-            $stock->increment('quantity', $this->quantity);
-        } else {
-            if ($stock->quantity < $this->quantity) {
-                $this->addError('quantity', 'Недостатньо товару на складі!');
-                return;
-            }
-            $stock->decrement('quantity', $this->quantity);
-        }
-
-        StockMovement::create([
-            'product_id'   => $this->product_id,
-            'warehouse_id' => $this->warehouse_id,
-            'user_id'      => auth()->id(),
-            'type'         => $this->type,
-            'quantity'     => $this->quantity,
-            'note'         => $this->note,
-        ]);
-
-        $this->product_id = '';
-        $this->warehouse_id = '';
-        $this->quantity = '';
-        $this->note = '';
-        $this->showForm = false;
-        $this->type = 'in';
-    }
 
     public function render()
     {

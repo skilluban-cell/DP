@@ -1,35 +1,10 @@
 <div>
     <div class="flex items-center justify-between mb-6">
         <flux:heading size="xl">Категорії</flux:heading>
-        <flux:button type="button" variant="primary" icon="plus" wire:click.prevent="openCreate">
+        <flux:button href="{{ route('categories.create') }}" variant="primary" icon="plus" wire:navigate>
             Додати категорію
         </flux:button>
     </div>
-
-    @if($showForm)
-        <div class="bg-white dark:bg-zinc-900 rounded-lg shadow p-6 max-w-2xl mb-6">
-            <flux:heading size="lg" class="mb-4">
-                {{ $editingId ? 'Редагувати категорію' : 'Нова категорія' }}
-            </flux:heading>
-            <form wire:submit="save">
-                <div class="grid gap-4">
-                    <flux:field>
-                        <flux:label>Назва</flux:label>
-                        <flux:input wire:model="name" placeholder="Назва категорії" />
-                        <flux:error name="name" />
-                    </flux:field>
-                    <flux:field>
-                        <flux:label>Опис</flux:label>
-                        <flux:textarea wire:model="description" rows="2" placeholder="Опис (необов'язково)" />
-                    </flux:field>
-                </div>
-                <div class="flex gap-3 mt-4">
-                    <flux:button type="submit" variant="primary">Зберегти</flux:button>
-                    <flux:button variant="ghost" wire:click="$set('showForm', false)">Скасувати</flux:button>
-                </div>
-            </form>
-        </div>
-    @endif
 
     <div class="mb-4">
         <flux:input wire:model.live="search" placeholder="Пошук категорії..." icon="magnifying-glass" />
