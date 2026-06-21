@@ -28,7 +28,7 @@
             </thead>
             <tbody class="divide-y divide-zinc-100 dark:divide-zinc-700">
                 @forelse($products as $product)
-                    <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800">
+                    <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800" wire:key="product-{{ $product->id }}">
                         <td class="px-4 py-3">{{ $product->name }}</td>
                         <td class="px-4 py-3 text-zinc-500">{{ $product->sku }}</td>
                         <td class="px-4 py-3">{{ $product->category->name }}</td>

@@ -30,7 +30,7 @@
             </thead>
             <tbody class="divide-y divide-zinc-100 dark:divide-zinc-700">
                 @forelse($movements as $movement)
-                    <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800">
+                    <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800" wire:key="movement-{{ $movement->id }}">
                         <td class="px-4 py-3 text-zinc-500">{{ $movement->created_at->format('d.m.Y H:i') }}</td>
                         <td class="px-4 py-3 font-medium">{{ $movement->product->name }}</td>
                         <td class="px-4 py-3">{{ $movement->warehouse->name }}</td>
