@@ -16,7 +16,9 @@ class CategoryIndex extends Component
 
     public function openCreate(): void
     {
-        $this->reset(['name', 'description', 'editingId']);
+        $this->name = '';
+        $this->description = '';
+        $this->editingId = null;
         $this->showForm = true;
     }
 
@@ -43,7 +45,10 @@ class CategoryIndex extends Component
             ]
         );
 
-        $this->reset(['name', 'description', 'editingId', 'showForm']);
+        $this->name = '';
+        $this->description = '';
+        $this->editingId = null;
+        $this->showForm = false;
     }
 
     public function delete(int $id): void

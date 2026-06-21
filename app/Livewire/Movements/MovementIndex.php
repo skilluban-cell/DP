@@ -25,8 +25,11 @@ class MovementIndex extends Component
 
     public function openCreate(): void
     {
-        $this->reset(['product_id', 'warehouse_id', 'type', 'quantity', 'note']);
+        $this->product_id = '';
+        $this->warehouse_id = '';
         $this->type = 'in';
+        $this->quantity = '';
+        $this->note = '';
         $this->showForm = true;
     }
 
@@ -65,7 +68,11 @@ class MovementIndex extends Component
             'note'         => $this->note,
         ]);
 
-        $this->reset(['product_id', 'warehouse_id', 'quantity', 'note', 'showForm']);
+        $this->product_id = '';
+        $this->warehouse_id = '';
+        $this->quantity = '';
+        $this->note = '';
+        $this->showForm = false;
         $this->type = 'in';
     }
 

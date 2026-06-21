@@ -15,7 +15,9 @@ class WarehouseIndex extends Component
 
     public function openCreate(): void
     {
-        $this->reset(['name', 'address', 'editingId']);
+        $this->name = '';
+        $this->address = '';
+        $this->editingId = null;
         $this->showForm = true;
     }
 
@@ -41,7 +43,10 @@ class WarehouseIndex extends Component
             ]
         );
 
-        $this->reset(['name', 'address', 'editingId', 'showForm']);
+        $this->name = '';
+        $this->address = '';
+        $this->editingId = null;
+        $this->showForm = false;
     }
 
     public function delete(int $id): void
