@@ -1,7 +1,7 @@
 <div>
     <div class="flex items-center justify-between mb-6">
         <flux:heading size="xl">Категорії</flux:heading>
-        <flux:button variant="primary" icon="plus" wire:click="openCreate">
+        <flux:button type="button" variant="primary" icon="plus" wire:click.prevent="openCreate">
             Додати категорію
         </flux:button>
     </div>
